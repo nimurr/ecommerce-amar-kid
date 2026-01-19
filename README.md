@@ -45,7 +45,7 @@ This is a Backend Initial Setup using Monolithic MVC Architecture. It is designe
 ### 1️⃣ Clone the repository
 
 ```sh
-git clone https://github.com/shadat-hossan/Backend-Setup-Monolithic-MVC-Architecture.git
+git clone https://github.com/nimurr/ecommerce-amar-kid
 cd Backend-Setup-Monolithic-MVC-Architecture
 ```
 
@@ -132,7 +132,7 @@ Feel free to fork this repository and submit pull requests.
 
 ## 📧 Contact
 
-**Authors**: [Md. Shadat Hossain](mailto:shadathossan3500@gmail.com) & Sahinur Islam
+**Authors**: [Nimur Rahman Nerob](mailto:nimurnerob404@gmail.com)
 
 If you have any questions, feel free to reach out!
 
