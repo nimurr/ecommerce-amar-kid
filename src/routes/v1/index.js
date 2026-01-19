@@ -21,12 +21,12 @@ const defaultRoutes = [
     route: userRoute,
   },
   {
-    path: "/feedback",
-    route: feedbackRoute,
-  },
-  {
     path: "/products",
     route: productRoute,
+  },
+  {
+    path: "/feedback",
+    route: feedbackRoute,
   },
   {
     path: "/notifications",
