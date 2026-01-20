@@ -31,11 +31,5 @@ const createProduct = catchAsync(async (req, res) => {
 
 module.exports = {
     createProduct,
-    addNote,
-    markAsPurchased,
-    getProducts,
-    getHistory,
-    getProductById,
-    deleteProductById,
-    deleteHistoryById
+ 
 };  
