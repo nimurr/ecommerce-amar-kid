@@ -13,8 +13,10 @@ const auth = require('../../middlewares/auth');
 
 router.post('/',
     auth('admin'),
+    
     [uploadUsers.single("image")],
     convertHeicToPngMiddleware(UPLOADS_FOLDER_USERS),
+
     categoriesController.createCategory)
 
 router.get('/', categoriesController.getCategories);

@@ -3,16 +3,15 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
     name: { type: String, required: true }, // product name
+    image: { type: String }, // product image
     price: { type: Number, required: true }, // product price
     discountPrice: { type: Number, default: 0 }, // discounted price
-    category: {
+    categoryId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Category',
         required: true
     },
-    inStock: { type: Boolean, default: true }, // availability status
     inStockQuantity: { type: Number, default: 0 }, // quantity in stock
-    image: { type: String, required: true }, // product image
     description: { type: String, required: true }, // product description
     agvRating: { type: Number, default: 0 }, // product rating
     reviews: { type: Number, default: 0 }, // number of reviews

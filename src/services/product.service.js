@@ -1,22 +1,56 @@
-const axios = require("axios");
-const cron = require("node-cron");
-const { Product } = require("../models");  
+const { Product } = require("../models");
 
-/* -------------------------------------------------------------------------- */
-/*                                CREATE PRODUCT                               */
-/* -------------------------------------------------------------------------- */
 
-const createProduct = async () => {
 
-    return "Product created successfully";
+const createProduct = async (data) => {
+    const results = await Product.create(data);
+    return results;
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                   EXPORTS                                   */
-/* -------------------------------------------------------------------------- */
+const getProducts = async () => {
+    const results = await Product.find({ isDeleted: false, isActive: true }).populate('categoryId', 'name');
+    if (!results) {
+        throw new Error('No products found');
+    }
+    return results;
+};
+
+const getProductById = async (productId) => {
+    const product = await Product.findOne({
+        _id: productId,
+        isDeleted: false,
+        isActive: true
+    }).populate('categoryId', 'name');
+
+    if (!product) {
+        throw new Error('Product not found');
+    }
+    return product;
+};
+
+const updateProduct = async (productId, data) => {
+    const product = await Product.findByIdAndUpdate(productId, data, { new: true });
+    if (!product) {
+        throw new Error('Product not found');
+    }
+    return product;
+};
+
+const deleteProduct = async (productId) => {
+    const product = await Product.findByIdAndUpdate(productId, { isDeleted: true }, { new: true });
+    if (!product) {
+        throw new Error('Product not found');
+    }
+    return product;
+}
+
 
 module.exports = {
-    createProduct
+    createProduct,
+    getProducts,
+    getProductById,
+    updateProduct,
+    deleteProduct
 };
 
 
