@@ -15,6 +15,7 @@ const verifyCallback =
     req.user = user;
 
 
+
     const { authorization } = req.headers;
   
     let token;
@@ -26,6 +27,7 @@ const verifyCallback =
       activity = decodedData.activity;
 
     }
+    
 
     if (requiredRights.length) {
       const userRights = roleRights.get(user.role);
