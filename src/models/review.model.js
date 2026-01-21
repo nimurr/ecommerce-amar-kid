@@ -5,20 +5,21 @@ const reviewSchema = new mongoose.Schema(
         productId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Product",
-            required: true,
+            required: [true, "Product ID is required"],
         },
         userId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
+            ref: "User"
         },
         rating: {
             type: Number,
-            required: true,
+            required: [true, "Rating is required"],
+            min: 1,
+            max: 5,
         },
         message: {
             type: String,
-            required: true,
+            required: [true, "Message is required"],
         },
     },
     {
