@@ -1,4 +1,6 @@
 const express = require("express");
+const router = express.Router();
+
 const config = require("../../config/config");
 const authRoute = require("./auth.routes");
 const userRoute = require("./user.routes");
@@ -7,8 +9,9 @@ const feedbackRoute = require("./feedback.routes");
 const productRoute = require("./product.routes");
 const notificationRoute = require("./notifications.routes");
 const categoriesRoute = require("./categories.routes");
+const reviewRoute = require("./review.routes");
 
-const router = express.Router();
+
 
 const defaultRoutes = [
   {
@@ -24,10 +27,13 @@ const defaultRoutes = [
     path: "/categories",
     route: categoriesRoute,
   },
-
   {
     path: "/products",
     route: productRoute,
+  },
+  {
+    path: "/reviews",
+    route: reviewRoute,
   },
   {
     path: "/feedback",

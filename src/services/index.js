@@ -8,3 +8,5 @@ module.exports.feedbackService = require('./feedback.service');
 module.exports.productService = require('./product.service');
 module.exports.notificationsService = require('./notifications.service');
 module.exports.categoriesService = require('./categories.service');
+
+module.exports.reviewService = require('./review.service');
