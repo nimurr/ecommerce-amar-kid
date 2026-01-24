@@ -54,7 +54,7 @@ const readAllNotification = catchAsync(async (req, res) => {
             message: "Notifications retrieved successfully",
             status: "OK",
             statusCode: httpStatus.OK,
-            data: notifications,
+            data: {},
         })
     );
 })

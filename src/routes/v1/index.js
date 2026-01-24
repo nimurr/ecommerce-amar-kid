@@ -11,6 +11,7 @@ const notificationRoute = require("./notifications.routes");
 const categoriesRoute = require("./categories.routes");
 const reviewRoute = require("./review.routes");
 const orderRoute = require("./order.routes");
+const bannerAdsRoute = require("./bannerAds.routes");
 
 
 
@@ -38,6 +39,10 @@ const defaultRoutes = [
   {
     path: "/reviews",
     route: reviewRoute,
+  },
+  {
+    path: "/banner-ads",
+    route: bannerAdsRoute,
   },
   {
     path: "/feedback",

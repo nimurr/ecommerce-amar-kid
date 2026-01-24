@@ -11,3 +11,4 @@ module.exports.categoriesService = require('./categories.service');
 
 module.exports.reviewService = require('./review.service');
 module.exports.orderService = require('./order.service');
+module.exports.bannerAdsService = require('./bannerAds.service');

@@ -19,6 +19,49 @@ const createOrder = catchAsync(async (req, res) => {
     );
 });
 
+const updateOrderStatus = catchAsync(async (req, res) => {
+    const orderId = req.params.id;
+    const data = req.body;
+    const results = await orderService.updateOrderStatus({ orderId, data });
+    // Logic to update an existing BannerAd
+    res.status(200).json(
+        response({
+            message: "BannerAd updated successfully",
+            status: "OK",
+            statusCode: httpStatus.OK,
+            data: {},
+        })
+    );
+});
+
+const getOrders = catchAsync(async (req, res) => {
+    const results = await orderService.getOrders();
+    res.status(200).json(
+        response({
+            message: "Orders retrieved successfully",
+            status: "OK",
+            statusCode: httpStatus.OK,
+            data: results,
+        })
+    );
+});
+
+const getOrder = catchAsync(async (req, res) => {
+    const orderId = req.params.id;
+    const results = await orderService.getOrder(orderId);
+    res.status(200).json(
+        response({
+            message: "Order retrieved successfully",
+            status: "OK",
+            statusCode: httpStatus.OK,
+            data: results,
+        })
+    );
+});
+
 module.exports = {
     createOrder,
+    updateOrderStatus,
+    getOrders,
+    getOrder
 };

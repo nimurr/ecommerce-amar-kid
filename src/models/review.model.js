@@ -21,6 +21,10 @@ const reviewSchema = new mongoose.Schema(
             type: String,
             required: [true, "Message is required"],
         },
+        isAdminApproved: {
+            type: Boolean,
+            default: false,
+        },
     },
     {
         timestamps: true,

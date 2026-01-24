@@ -7,6 +7,7 @@ module.exports.notificationController = require('./notifications.controller');
 module.exports.categoriesController = require('./categories.controller');
 module.exports.reviewController = require('./review.controller');
 module.exports.orderController = require('./order.controller');
+module.exports.bannerAdsController = require('./bannerAds.controller');
 
 
 

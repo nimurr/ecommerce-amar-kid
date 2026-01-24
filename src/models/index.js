@@ -14,3 +14,4 @@ module.exports.Product = require('./product.model');
 
 module.exports.Review = require('./review.model');
 module.exports.Order = require('./order.model');
+module.exports.BannerAd = require('./bannerAds.model');

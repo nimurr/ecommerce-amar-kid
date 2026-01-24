@@ -5,8 +5,6 @@ const catchAsync = require("../utils/catchAsync");
 
 const createReview = catchAsync(async (req, res) => {
     const userId = req.user.id;
-
-
     const results = await reviewService.createReview({ data: req.body, userId });
     // Logic to create a new review
     res.status(201).json(
@@ -28,7 +26,7 @@ const updateReview = catchAsync(async (req, res) => {
     // Logic to update an existing review
     res.status(200).json(
         response({
-            message: "Review updated successfully",
+            message: "Review Approved successfully",
             status: "OK",
             statusCode: httpStatus.OK,
             data: {},
@@ -52,6 +50,8 @@ const getAllReviews = catchAsync(async (req, res) => {
         })
     );
 });
+
+
 
 
 module.exports = {

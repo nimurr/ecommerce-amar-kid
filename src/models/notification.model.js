@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const { roles } = require("../config/roles");
 
 const notificationSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        ref: 'User'
     },
     products: {
         type: Schema.Types.ObjectId,
@@ -18,8 +16,16 @@ const notificationSchema = new Schema({
         enum: ['unread', 'read'],
         default: 'unread'
     },
+    text: {
+        type: String,
+        required: true
+    },
+    disc: {
+        type: String,
+        required: false,
+        default: null
+    },
 
- 
     sendBy: {
         type: Schema.Types.ObjectId,
         ref: 'User',

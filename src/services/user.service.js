@@ -1,5 +1,5 @@
 const httpStatus = require("http-status");
-const { User } = require("../models");
+const { User, Notification } = require("../models");
 const ApiError = require("../utils/ApiError");
 const { sendEmailVerification } = require("./email.service");
 const unlinkImages = require("../common/unlinkImage");
@@ -14,6 +14,15 @@ const createUser = async (userBody) => {
 
     sendEmailVerification(userBody.email, oneTimeCode);
   }
+
+  const notifyData = {
+    userId: userBody._id && null,
+    text: `Register a new User with email ${userBody.email}`,
+    disc: `New user registered with email for take service`,
+  }
+  await Notification.create(notifyData);
+
+
   return User.create({ ...userBody, oneTimeCode });
 };
 
