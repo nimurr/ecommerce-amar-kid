@@ -5,8 +5,9 @@ const { orderService } = require("../services");
 
 
 const createOrder = catchAsync(async (req, res) => {
+    const user = req.user;
 
-    const data = await orderService.createOrder(req.body);
+    const data = await orderService.createOrder({ data: req.body, userId: user ? user._id : null });
 
     res.status(201).json(
         response({

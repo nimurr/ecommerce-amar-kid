@@ -21,6 +21,12 @@ const orderSchema = new mongoose.Schema(
       },
     ],
 
+    userId: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+      required: false,
+    },
+
     userName: { type: String, required: true },
     address: { type: String, required: true },
     phoneNumber: { type: String, required: true },

@@ -23,7 +23,6 @@ const defaultRoutes = [
     path: "/users",
     route: userRoute,
   },
-
   {
     path: "/categories",
     route: categoriesRoute,
