@@ -13,3 +13,4 @@ module.exports.Category = require('./categories.model');
 module.exports.Product = require('./product.model');
 
 module.exports.Review = require('./review.model');
+module.exports.Order = require('./order.model');

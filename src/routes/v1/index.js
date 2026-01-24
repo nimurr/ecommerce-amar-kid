@@ -10,6 +10,7 @@ const productRoute = require("./product.routes");
 const notificationRoute = require("./notifications.routes");
 const categoriesRoute = require("./categories.routes");
 const reviewRoute = require("./review.routes");
+const orderRoute = require("./order.routes");
 
 
 
@@ -30,6 +31,10 @@ const defaultRoutes = [
   {
     path: "/products",
     route: productRoute,
+  },
+  {
+    path: "/orders",
+    route: orderRoute,
   },
   {
     path: "/reviews",
