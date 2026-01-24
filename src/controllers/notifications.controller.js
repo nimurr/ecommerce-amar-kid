@@ -35,13 +35,13 @@ const createNotification = catchAsync(async (req, res) => {
 const getNotification = catchAsync(async (req, res) => {
     const { _id } = req.user;
 
-    const notifications = await notificationsService.getNotification({ userId: _id });
+    const { notifications, unReadCount } = await notificationsService.getNotification({ userId: _id });
     res.status(200).json(
         response({
             message: "Notifications retrieved successfully",
             status: "OK",
             statusCode: httpStatus.OK,
-            data: notifications,
+            data: { notifications, unReadCount },
         })
     );
 })

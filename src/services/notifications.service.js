@@ -20,7 +20,10 @@ const getNotification = async ({ userId }) => {
     // ✅ 2. Fetch from DB
     const notifications = await Notification.find({})
         .sort({ createdAt: -1 })
-    return notifications;
+
+    const unReadCount = await Notification.countDocuments({ status: "unread" });
+
+    return { notifications, unReadCount };
 };
 
 /* -------------------------------------------------------------------------- */
@@ -32,6 +35,7 @@ const readAllNotification = async ({ userId }) => {
     const notifications = await Notification.updateMany(
         { status: "read" }
     );
+
 
     return notifications
 }
