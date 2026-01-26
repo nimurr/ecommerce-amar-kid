@@ -7,27 +7,29 @@ const { Activity } = require("../models");
 
 const verifyCallback =
   (req, resolve, reject, requiredRights) => async (err, user, info) => {
+
     if (err || info || !user) {
       return reject(
         new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized")
       );
     }
+
     req.user = user;
-
-
+ 
 
     const { authorization } = req.headers;
-  
+
+
     let token;
     let activity;
     let decodedData;
     if (authorization && authorization.startsWith("Bearer")) {
       token = authorization.split(" ")[1];
       decodedData = jwt.decode(token);
+      console.log(decodedData)
       activity = decodedData.activity;
-
     }
-    
+
 
     if (requiredRights.length) {
       const userRights = roleRights.get(user.role);
@@ -44,16 +46,17 @@ const verifyCallback =
 
 const auth =
   (...requiredRights) =>
-  async (req, res, next) => {
-    return new Promise((resolve, reject) => {
-      passport.authenticate(
-        "jwt",
-        { session: false },
-        verifyCallback(req, resolve, reject, requiredRights)
-      )(req, res, next);
-    })
-      .then(() => next())
-      .catch((err) => next(err));
-  };
+    async (req, res, next) => {
+      console.log(req.authorization)
+      return new Promise((resolve, reject) => {
+        passport.authenticate(
+          "jwt",
+          { session: false },
+          verifyCallback(req, resolve, reject, requiredRights)
+        )(req, res, next);
+      })
+        .then(() => next())
+        .catch((err) => next(err));
+    };
 
 module.exports = auth;
