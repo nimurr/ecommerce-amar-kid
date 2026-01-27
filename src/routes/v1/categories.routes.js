@@ -12,7 +12,7 @@ const auth = require('../../middlewares/auth');
 
 
 router.post('/',
-    // auth('admin'),
+    auth('admin'),
     [uploadUsers.single("image")],
     convertHeicToPngMiddleware(UPLOADS_FOLDER_USERS),
     categoriesController.createCategory)
@@ -27,7 +27,7 @@ router.patch('/:id',
     categoriesController.updateCategory);
 
 router.delete('/:id',
-    // auth('admin'),
+    auth('admin'),
     categoriesController.deleteCategory);
 
 

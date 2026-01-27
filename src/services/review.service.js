@@ -15,7 +15,7 @@ const createReview = async ({ data, userId }) => {
     }
 
     const result = await Review.create(reviewData);
-    
+
     const notifyData = {
         userId: userId,
         text: `You have a new review for in a Product`,
@@ -28,10 +28,6 @@ const createReview = async ({ data, userId }) => {
 
 
 const updateReview = async ({ reviewId }) => {
-
-    if (data.rating && (data.rating < 1 || data.rating > 5)) {
-        throw new Error('Rating must be between 1 and 5');
-    }
     // update isAdminApproved field only
     const updatedReview = await Review.findByIdAndUpdate(reviewId, { isAdminApproved: true }, { new: true });
     if (!updatedReview) {
@@ -42,7 +38,7 @@ const updateReview = async ({ reviewId }) => {
 
 
 const getAllReviews = async (productId) => {
-    const reviews = await Review.find({ productId: productId, }).populate('userId', 'fullName profileImage');
+    const reviews = await Review.find({ productId: productId, isAdminApproved: true }).populate('userId', 'fullName profileImage');
     if (!reviews) {
         throw new Error('No reviews found for this product');
     }
@@ -51,8 +47,17 @@ const getAllReviews = async (productId) => {
 }
 
 
+const getAllReviewsAdmin = async () => {
+    const reviews = await Review.find({ isAdminApproved: false }).populate('userId', 'fullName profileImage');
+    if (!reviews) {
+        throw new Error('No reviews found for this product');
+    }
+    return reviews;
+}
+
 module.exports = {
     createReview,
     updateReview,
-    getAllReviews
+    getAllReviews,
+    getAllReviewsAdmin
 };

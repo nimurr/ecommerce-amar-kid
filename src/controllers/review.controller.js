@@ -51,11 +51,24 @@ const getAllReviews = catchAsync(async (req, res) => {
     );
 });
 
+const getAllReviewsAdmin = catchAsync(async (req, res) => {
+    const results = await reviewService.getAllReviewsAdmin();
+    res.status(200).json(
+        response({
+            message: "Reviews retrieved successfully",
+            status: "OK",
+            statusCode: httpStatus.OK,
+            data: results,
+        })
+    );
+});
+
 
 
 
 module.exports = {
     createReview,
     updateReview,
-    getAllReviews
+    getAllReviews,
+    getAllReviewsAdmin
 };
