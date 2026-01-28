@@ -29,10 +29,37 @@ const updateOrderStatus = async ({ orderId, data }) => {
     return result;
 }
 
-const getOrders = async () => {
-    const result = await Order.find();
-    return result;
-}
+const getOrders = async ({ status, page = 1, limit = 10 }) => {
+    const query = status ? { status } : {};
+
+    const skip = (page - 1) * limit;
+
+    const [orders, total] = await Promise.all([
+        Order.find(query)
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(Number(limit))
+            .populate({
+                path: "products.productId",
+                model: "Product",
+            })
+            .populate("userId"),
+
+        Order.countDocuments(query),
+    ]);
+
+    return {
+        results: orders,
+        pagination: {
+            total,
+            page: Number(page),
+            limit: Number(limit),
+            totalPages: Math.ceil(total / limit),
+        },
+    };
+};
+
+
 
 const getOrder = async (orderId) => {
     const result = await Order.findById(orderId);

@@ -35,7 +35,10 @@ const updateOrderStatus = catchAsync(async (req, res) => {
 });
 
 const getOrders = catchAsync(async (req, res) => {
-    const results = await orderService.getOrders();
+    const status = req.query.status;
+    const page = req.query.page;
+    const limit = req.query.limit;
+    const results = await orderService.getOrders({ status, page, limit });
     res.status(200).json(
         response({
             message: "Orders retrieved successfully",
