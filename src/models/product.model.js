@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema({
         ref: 'Category',
         required: true
     },
+    size: { type: [String], required: false }, // product size
     inStockQuantity: { type: Number, default: 0 }, // quantity in stock
     description: { type: String, required: true }, // product description
     agvRating: { type: Number, default: 0 }, // product rating
