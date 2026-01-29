@@ -62,7 +62,13 @@ const getOrders = async ({ status, page = 1, limit = 10 }) => {
 
 
 const getOrder = async (orderId) => {
-    const result = await Order.findById(orderId);
+    const result = await Order.findById(orderId)
+        .populate({
+            path: "products.productId",
+            model: "Product",
+        })
+        .populate("userId")
+        ;
     return result;
 }
 
